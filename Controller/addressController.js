@@ -38,3 +38,36 @@ exports.GetUserAddress = async (req, res) => {
         res.status(500).json({ mesage: error.message })
     }
 }
+
+
+exports.EditUserAddress = async (req, res) => {
+    const { id } = req.params
+    const updateData = req.body
+    if (!id) return res.status(404).json({ message: "Missing data" })
+    try {
+        const result = await AddressModel.findByIdAndUpdate(id, updateData, { new: true })
+        res.status(200).json({
+            message: "Address updated successfully",
+            success: true,
+            data: result
+        })
+    }
+    catch (error) {
+        return res.status(500).json({ message: error })
+    }
+}
+exports.DeleteUserAddress = async (req, res) => {
+    const { id } = req.params
+    if (!id) return res.status(404).json({ message: "Missing data" })
+    try {
+        const result = await AddressModel.findByIdAndDelete(id)
+        res.status(200).json({
+            message: "Address deleted successfully",
+            success: true,
+            data: result
+        })
+    }
+    catch (error) {
+        return res.status(500).json({ message: error })
+    }
+}

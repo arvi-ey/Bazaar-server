@@ -4,7 +4,6 @@ const addressSchema = new mongoose.Schema({
     label: {
         type: String,
         required: [true, 'Address label is required'], // e.g., Home, Work
-        trim: true
     },
     userId: {
         type: String,
@@ -12,7 +11,6 @@ const addressSchema = new mongoose.Schema({
     street: {
         type: String,
         required: [true, 'Street is required'],
-        trim: true
     },
     city: {
         type: String,
