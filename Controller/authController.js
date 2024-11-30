@@ -23,7 +23,7 @@ exports.UserSignIn = async (req, res) => {
                     const sessionData = jwt.sign({ id: user._id, role: user.userType }, process.env.JWT_SECRET,);
                     res.cookie('token', sessionData, {
                         httpOnly: true,
-                        secure: process.env.NODE_ENV !== 'development',
+                        secure: true,
                         sameSite: 'None',
                         maxAge: 60 * 24 * 60 * 60 * 1000
                     });
