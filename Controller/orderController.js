@@ -44,10 +44,10 @@ exports.PlaceOrder = async (req, res) => {
     }
 }
 exports.GetOrder = async (req, res) => {
-    const { userId } = req.params
+    const { id } = req.params
     if (!id) return res.status(404).json({ message: "Missing data", success: false })
     try {
-        const order = await OrderModel.find({ userId })
+        const order = await OrderModel.find({ userId: id })
         res.status(200).json({
             message: "All orders fetched successfully",
             success: true,
