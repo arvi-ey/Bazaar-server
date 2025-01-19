@@ -11,12 +11,13 @@ exports.UserSignIn = async (req, res) => {
             if (!user) return res.status(404).json({
                 message: "This email doesnot exists, please sign up first",
                 user: null,
-                authenticate: false
+                authenticate: false,
+                email: false
             })
             else {
                 const checkPassword = await bcrypt.compare(password, user.password)
                 if (checkPassword === false) {
-                    console.log(checkPassword)
+                    // console.log(checkPassword)
                     res.status(401).json({ message: "Wrong email or password", user: false })
                 }
                 else {
