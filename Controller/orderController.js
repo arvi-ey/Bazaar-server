@@ -96,3 +96,22 @@ exports.GetAllOrders = async (req, res) => {
     }
 
 }
+
+exports.GetSingleOrder = async (req, res) => {
+    const { id } = req.params
+    if (!id) return res.status(400).json({ message: "Missing data", success: false })
+    try {
+        const result = await OrderModel.findById(id)
+        res.status(200).json({
+            message: "Order fetched successfully",
+            data: result,
+            success: true,
+        })
+    }
+    catch (error) {
+        res.status(500).json({
+            message: error.message,
+            success: false,
+        })
+    }
+}

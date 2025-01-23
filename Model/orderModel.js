@@ -43,10 +43,17 @@ const orderSchema = new mongoose.Schema({
         required: true,
         enum: ['PAID', 'PENDING', 'REFUNDED'],
     },
+    orderDate: {
+        type: Date,
+        required: true
+    },
+    orderAddress: {
+        type: String,
+    },
     orderStatus: {
         type: String,
         required: true,
-        enum: ['PLACED', 'SHIPPED', 'OUT', 'DELIVERED', 'CANCELLED', "RETURNED"],
+        enum: ['PLACED', 'SHIPPED', 'OUT FOR DELIVERY', 'DELIVERED', 'CANCELLED', "RETURNED"],
     }
 
 })
