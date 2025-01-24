@@ -117,21 +117,20 @@ exports.GetSingleProduct = async (req, res) => {
 
 exports.GetAllProductByCategory = async (req, res) => {
     const { category } = req.params
-    const page = parseInt(req.query.page) || 1
-    const limit = parseInt(req.query.limit) || 10
-    const skip = (page - 1) * limit
-    if (!category) res.status(404).json({ message: "Missing product category" })
+    if (!category) res.status(404).json({ message: "Missing product category", success: false })
     try {
-        const Product = await ProductModel.find({ category: category }).skip(skip).limit(limit)
+        const Product = await ProductModel.find({ category })
         res.status(200).json({
             message: "Fetch product by category successfull",
             status: "successfull",
-            data: Product
+            data: Product,
+            success: true
         })
     }
     catch (error) {
         res.status(500).json({
-            message: error.mesage
+            message: error.mesage,
+            success: false
         })
     }
 }
