@@ -56,6 +56,6 @@ const orderSchema = new mongoose.Schema({
         enum: ['PLACED', 'SHIPPED', 'OUT FOR DELIVERY', 'DELIVERED', 'CANCELLED', "RETURNED"],
     }
 
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('Order', orderSchema);

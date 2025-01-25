@@ -47,7 +47,8 @@ exports.GetOrder = async (req, res) => {
     const { id } = req.params
     if (!id) return res.status(404).json({ message: "Missing data", success: false })
     try {
-        const order = await OrderModel.find({ userId: id })
+        const order = await OrderModel.find({ userId: id }).sort({ createdAt: -1 })
+        // const order = await OrderModel.deleteMany()
         res.status(200).json({
             message: "All orders fetched successfully",
             success: true,
