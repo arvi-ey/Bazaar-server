@@ -64,7 +64,7 @@ exports.GetCartItems = async (req, res) => {
     if (!userId) return res.status(404).json({ message: "Missing Data" })
 
     try {
-        const data = await CartModel.find({ userId })
+        const data = await CartModel.find({ userId }).sort({ createdAt: -1 })
         res.status(200).json({
             success: true,
             mesage: "Cart Item fetched succesfully",
