@@ -60,23 +60,29 @@ exports.DeleteProduct = async (req, res) => {
 
 
 exports.GetAllProduct = async (req, res) => {
-    const page = parseInt(req.query.page) || 1
-    const limit = parseInt(req.query.limit) || 6
-    const skip = (page - 1) * limit
-    const sortquery = req.query.sort || "dsc"
-    const sortOption = sortquery === "dsc" ? -1 : 1
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 6;
+    const category = req.query.category || "all";
+    const skip = (page - 1) * limit;
+    const sortquery = req.query.sort || "dsc";
+    const sortOption = sortquery === "dsc" ? -1 : 1;
+    const filter = category !== "all" ? { category } : {};
+
     try {
-        const Product = await ProductModel.find().sort({ price: sortOption }).skip(skip).limit(limit)
+        const products = await ProductModel.find(filter)
+            .sort({ price: sortOption })
+            .skip(skip)
+            .limit(limit);
+
         res.status(200).json({
-            message: "Fetch all product successfull",
-            status: "successfull",
-            data: Product
-        })
-    }
-    catch (error) {
+            message: "Fetch all product successful",
+            status: "successful",
+            data: products
+        });
+    } catch (error) {
         res.status(500).json({
-            message: error.mesage
-        })
+            message: error.message // fixed typo here
+        });
     }
 }
 
