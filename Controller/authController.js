@@ -8,9 +8,9 @@ exports.UserSignIn = async (req, res) => {
     else {
         try {
             const user = await UserModel.findOne({ email })
-            if (!user) return res.status(404).json({
+            if (!user) return res.status(200).json({
                 message: "This email doesnot exists, please sign up first",
-                user: null,
+                user: false,
                 authenticate: false,
                 email: false
             })
@@ -18,7 +18,7 @@ exports.UserSignIn = async (req, res) => {
                 const checkPassword = await bcrypt.compare(password, user.password)
                 if (checkPassword === false) {
                     // console.log(checkPassword)
-                    res.status(401).json({ message: "Wrong email or password", user: false })
+                    res.status(200).json({ message: "Wrong email or password", user: false, authenticate: false })
                 }
                 else {
                     const sessionData = jwt.sign({ id: user._id, role: user.userType }, process.env.JWT_SECRET,);
@@ -51,10 +51,10 @@ exports.UserSignUp = async (req, res) => {
     if (!name || !email || !phone_number || !password) res.status(404).json({ message: "Missing Data" })
     else {
         const emailExist = await UserModel.findOne({ email })
-        if (emailExist) res.status(409).json({ message: "Email already exists", error: "email", user: false })
+        if (emailExist) res.status(409).json({ message: "Email id already exists", error: "email", user: false })
         else {
             const numberExist = await UserModel.findOne({ phone_number })
-            if (numberExist) res.status(409).json({ message: "Phone number already exists", error: "phone", user: false })
+            if (numberExist) res.status(409).json({ message: "Phone number already exists", error: "phone_number", user: false })
             else {
                 try {
                     const salt = await bcrypt.genSalt(10)
@@ -80,3 +80,24 @@ exports.UserSignUp = async (req, res) => {
     }
 
 }
+
+exports.UserLogout = async (req, res) => {
+    try {
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: true,
+            sameSite: "None",
+        });
+
+        res.status(200).json({
+            message: "User logged out successfully",
+            success: true,
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: "Logout failed",
+            error: error.message,
+            success: false,
+        });
+    }
+};
