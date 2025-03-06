@@ -26,7 +26,6 @@ exports.verifyToken = async (req, res, next) => {
             res.send(user)
         });
     } catch (err) {
-        console.error(err);
         res.status(401).json({ message: 'Invalid or expired token' });
     }
 };

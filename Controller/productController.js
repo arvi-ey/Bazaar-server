@@ -67,7 +67,6 @@ exports.GetAllProduct = async (req, res) => {
     const sortquery = req.query.sort || "dsc";
     const sortOption = sortquery === "dsc" ? -1 : 1;
     const filter = category !== "all" ? { category } : {};
-    console.log(filter)
     try {
         const products = await ProductModel.find(filter)
             .sort({ price: sortOption })
