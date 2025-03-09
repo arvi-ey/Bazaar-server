@@ -89,7 +89,7 @@ exports.GetHomeProducts = async (req, res) => {
     const limit = parseInt(req.query.limit) || 20
     try {
         const products = await ProductModel.find().limit(limit)
-        res.statu(200).json({
+        res.status(200).json({
             mesage: "Fetching home products successfully",
             status: "successfull",
             data: products
