@@ -1,10 +1,13 @@
 const AddressModel = require("../Model/addressModel")
 
 exports.AddAddress = async (req, res) => {
-    const { label, street, city, state, pinCode, userId } = req.body
-    if (!label || !street || !city || !state || !pinCode || !userId) return res.status(404).json({
-        message: "Missing Data"
-    })
+    const { street, city, state, pinCode, userId } = req.body
+    if (!street || !city || !state || !pinCode || !userId) {
+        console.log(req.body)
+        return res.status(404).json({
+            message: "Missing Data"
+        })
+    }
     try {
         const result = await AddressModel.create(req.body)
         if (result) {

@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 
 const addressSchema = new mongoose.Schema({
-    label: {
+    name: {
         type: String,
-        required: [true, 'Address label is required'], // e.g., Home, Work
+    },
+    phone: {
+        type: Number
     },
     userId: {
         type: String,
@@ -29,6 +31,9 @@ const addressSchema = new mongoose.Schema({
     },
     landmark: {
         type: String,
+    },
+    houseNumber: {
+        type: Number,
     },
     addressType: {
         type: String,

@@ -21,7 +21,7 @@ exports.UserSignIn = async (req, res) => {
                     res.status(200).json({ message: "Wrong email or password", user: false, authenticate: false })
                 }
                 else {
-                    const sessionData = jwt.sign({ id: user._id, role: user.userType }, process.env.JWT_SECRET,);
+                    const sessionData = jwt.sign({ id: user._id, role: user.userType, name: user.name, phone: user.phone_number, email: user.email }, process.env.JWT_SECRET,);
                     res.cookie('token', sessionData, {
                         httpOnly: true,
                         secure: true,

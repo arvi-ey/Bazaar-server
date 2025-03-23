@@ -61,7 +61,7 @@ const cartSchema = new mongoose.Schema({
     size: {
         type: String,
         required: true,
-        enum: ['S', 'M', 'L', 'XL', 'XXL'],
+        enum: ["XS", 'S', 'M', 'L', 'XL', 'XXL'],
     },
     deliveryTime: {
         type: Number,

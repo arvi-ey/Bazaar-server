@@ -12,7 +12,7 @@ Router.route('/getallUser')
     .get()
 
 Router.route('/updateuser/:id')
-    .post(UpdateUser)
+    .patch(UpdateUser)
 
 
 module.exports = Router

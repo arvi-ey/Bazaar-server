@@ -36,12 +36,13 @@ exports.GetUser = async (req, res) => {
 
 exports.UpdateUser = async (req, res) => {
     const { id } = req.params
-    if (!id) res.status(404).jsoon({ message: "Missing data" })
+    if (!id) res.status(404).json({ message: "Missing data" })
     try {
         const updatedData = await UserModel.findByIdAndUpdate(id, { $set: req.body }, { new: true })
+        console.log(updatedData)
         res.status(200).json({
             message: "User updated successfully",
-            status: "success",
+            status: true,
             data: updatedData
         })
     }

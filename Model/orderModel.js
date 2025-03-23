@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
+    name: {
+        type: String,
+    },
+    phone: {
+        type: Number
+    },
     productId: {
         type: String,
         required: true
@@ -49,6 +55,24 @@ const orderSchema = new mongoose.Schema({
     },
     orderAddress: {
         type: String,
+    },
+    city: {
+        type: String,
+    },
+    state: {
+        type: String
+    },
+    houseNumber: {
+        type: String
+    },
+    landMark: {
+        type: String
+    },
+    pinCode: {
+        type: Number
+    },
+    addressType: {
+        type: String
     },
     orderStatus: {
         type: String,

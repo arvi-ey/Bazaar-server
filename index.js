@@ -10,6 +10,7 @@ const BannerRouter = require("./Router/bannerRouter")
 const CartRouter = require("./Router/cartRouter")
 const AddressRouter = require("./Router/addressRouter")
 const OrderRouter = require("./Router/orderRouter")
+const CheckoutRouter = require("./Router/paymentRouter")
 const bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser')
 var cors = require('cors')
@@ -45,6 +46,7 @@ app.use("/banner", BannerRouter)
 app.use("/cart", CartRouter)
 app.use("/address", AddressRouter)
 app.use("/order", OrderRouter)
+app.use("/payment", CheckoutRouter)
 
 const PORT = process.env.PORT || 5500
 app.listen(PORT, () => {
