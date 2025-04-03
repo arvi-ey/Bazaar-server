@@ -12,7 +12,9 @@ const AddressRouter = require("./Router/addressRouter")
 const OrderRouter = require("./Router/orderRouter")
 const CheckoutRouter = require("./Router/paymentRouter")
 const bodyParser = require('body-parser')
+const fileUpload = require('express-fileupload');
 var cookieParser = require('cookie-parser')
+
 var cors = require('cors')
 
 //Application lavel Middlewares
@@ -20,6 +22,12 @@ app.use(cors({
     origin: ['http://localhost:5173', 'https://bazaar-webpannel.netlify.app', 'http://192.168.29.222:5500'],
     credentials: true,
 }))
+
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/'
+}));
+
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

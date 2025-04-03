@@ -1,6 +1,6 @@
 const express = require("express")
 const Router = express.Router()
-const { AddUser, UpdateUser, GetUser } = require("../Controller/userController")
+const { AddUser, UpdateUser, GetUser, UploadImage } = require("../Controller/userController")
 
 Router.route('/adduser')
     .post(AddUser)
@@ -13,6 +13,7 @@ Router.route('/getallUser')
 
 Router.route('/updateuser/:id')
     .patch(UpdateUser)
-
+Router.route("/updateuserimage/:id")
+    .patch(UploadImage)
 
 module.exports = Router

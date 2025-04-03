@@ -41,6 +41,9 @@ const userSchema = new mongoose.Schema(
         },
         profile_image: {
             type: String,
+        },
+        image_public_id: {
+            type: String
         }
     },
     {
