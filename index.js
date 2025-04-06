@@ -14,12 +14,14 @@ const CheckoutRouter = require("./Router/paymentRouter")
 const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload');
 var cookieParser = require('cookie-parser')
+const fs = require('fs');
+
 
 var cors = require('cors')
 
-//Application lavel Middlewares
+
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://bazaar-webpannel.netlify.app', 'http://192.168.29.222:5500'],
+    origin: ['http://localhost:5173', 'http://localhost:5174', 'https://bazaar-webpannel.netlify.app', 'http://192.168.29.222:5500'],
     credentials: true,
 }))
 

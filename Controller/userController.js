@@ -1,6 +1,8 @@
 const UserModel = require("../Model/userModel")
 const { uploadImage, deleteImage } = require("../Helper/cloudinaryHelper")
 const userModel = require("../Model/userModel")
+const fs = require('fs');
+
 
 exports.AddUser = async (req, res) => {
     const { name, email, phone_number } = req.body
@@ -52,6 +54,11 @@ exports.UploadImage = async (req, res) => {
             await deleteImage(userData?.image_public_id)
         }
         const result = await uploadImage(imageFile.tempFilePath);
+
+        fs.unlink(imageFile.tempFilePath, (err) => {
+            if (err) console.error("Temp file not deleted:", err);
+        });
+
         const updateobj = {
             profile_image: result.imageUrl,
             image_public_id: result.publicId

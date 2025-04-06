@@ -17,7 +17,7 @@ exports.CheckoutPayment = async (req, res) => {
                         name: data?.title,
                         images: [data.image],
                     },
-                    unit_amount: Math.floor(data?.subTotal)
+                    unit_amount: Math.floor(data?.subTotal * 100)
                 },
                 quantity: data?.count
             }
