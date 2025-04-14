@@ -21,7 +21,7 @@ var cors = require('cors')
 
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174', 'https://bazaar-webpannel.netlify.app', 'https://baazaaar.netlify.app/', 'http://192.168.29.222:5500'],
+    origin: ['http://localhost:5173', 'http://localhost:5174', 'https://bazaar-webpannel.netlify.app', 'https://baazaaar.netlify.app', 'http://192.168.29.222:5500'],
     credentials: true,
 }))
 
