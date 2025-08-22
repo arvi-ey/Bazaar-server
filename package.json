@@ -19,6 +19,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.2",
     "express-fileupload": "^1.5.1",
+    "google-auth-library": "^10.2.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.3",
     "react-redux": "^9.1.2",
