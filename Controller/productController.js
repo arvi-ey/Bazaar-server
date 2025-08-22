@@ -90,7 +90,6 @@ exports.GetAllProduct = async (req, res) => {
 
 exports.Filteredproducts = async (req, res) => {
     const price = Number(req.query.price);
-    console.log("Received price from query:", price); // 🪵 Debug log
 
     if (price) {
         try {
@@ -118,16 +117,6 @@ exports.GetHomeProducts = async (req, res) => {
             status: "successfull",
             data: products
         })
-
-        // const Dataproduct = await productModel.find()
-        // for (let i of Dataproduct) {
-        //     const randomNumber = (Math.floor(Math.random() * 3) + 5) / 2;
-        //     console.log(randomNumber)
-        //     const obj = {
-        //         ratings: randomNumber
-        //     }
-        //     await ProductModel.findByIdAndUpdate(i._id, { $set: obj })
-        // }
     }
     catch (error) {
         res.status(500).json({
